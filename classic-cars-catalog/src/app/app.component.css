@@ -1,0 +1,16 @@
+main {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #0c0c0c;
+  color: #ffffff;
+}

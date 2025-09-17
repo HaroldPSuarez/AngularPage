@@ -1,0 +1,82 @@
+<div class="home">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Carros Clásicos Deportivos</h1>
+      <p class="hero-subtitle">Descubre los vehículos más emblemáticos de los 80s, 90s y 2000s</p>
+      <p class="hero-description">
+        Una colección única de los supercarros que marcaron época y siguen siendo íconos de
+        velocidad, diseño y exclusividad.
+      </p>
+      <button class="cta-button" (click)="viewCatalog()">Ver Catálogo Completo</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <h3>{{ featuredCars.length }}+</h3>
+        <p>Modelos Clásicos</p>
+      </div>
+      <div class="stat">
+        <h3>3</h3>
+        <p>Décadas</p>
+      </div>
+      <div class="stat">
+        <h3>{{ currentYear - 1980 }}</h3>
+        <p>Años de Historia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Cars -->
+  <section class="featured-section">
+    <div class="container">
+      <h2 class="section-title">Vehículos Destacados</h2>
+      <div class="featured-grid">
+        <div *ngFor="let car of featuredCars" class="featured-card" (click)="viewCarDetail(car.id)">
+          <div class="card-image">
+            <img [src]="car.image" [alt]="car.name" />
+            <div class="card-overlay">
+              <div class="card-decade">{{ car.decade }}</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3>{{ car.brand }} {{ car.name }}</h3>
+            <p class="car-year">{{ car.year }}</p>
+            <div class="car-specs">
+              <span>{{ car.horsepower }} HP</span>
+              <span>{{ car.topSpeed }}</span>
+            </div>
+            <p class="car-price">{{ car.price }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🏁</div>
+          <h3>Rendimiento Legendario</h3>
+          <p>Vehículos con especificaciones que marcaron su época</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>Diseño Icónico</h3>
+          <p>Formas y estilos que definieron generaciones</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⭐</div>
+          <h3>Exclusividad</h3>
+          <p>Modelos limitados y altamente cotizados</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📈</div>
+          <h3>Valor en Aumento</h3>
+          <p>Inversiones que se aprecian con el tiempo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
