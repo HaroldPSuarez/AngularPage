@@ -1,0 +1,107 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="container">
+      <!-- Main Footer Content -->
+      <div class="footer-main">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+          <div class="footer-logo" (click)="navigateTo('')">
+            <h2>🏎️ Classic Cars</h2>
+          </div>
+          <p class="footer-description">
+            Tu destino para los carros clásicos deportivos más emblemáticos. 
+            Especialistas en vehículos de los 80s, 90s y 2000s.
+          </p>
+          <div class="social-links">
+            <span 
+              *ngFor="let social of socialLinks" 
+              class="social-link"
+              (click)="openSocialLink(social.url)"
+              [title]="social.name"
+            >
+              {{ social.icon }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h3>Navegación</h3>
+          <ul class="footer-links">
+            <li *ngFor="let link of quickLinks">
+              <a (click)="navigateTo(link.route)">{{ link.name }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer-section">
+          <h3>Servicios</h3>
+          <ul class="footer-links">
+            <li *ngFor="let service of serviceLinks">
+              <a (click)="navigateTo(service.route)">{{ service.name }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Bogotá, Colombia</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <span>+57 (1) 234-5678</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <span>info@classiccars.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🕒</span>
+              <span>Lun - Sáb: 9:00 - 18:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="newsletter-section">
+        <h3>Mantente Informado</h3>
+        <p>Suscríbete para recibir noticias sobre nuevos vehículos y eventos exclusivos</p>
+        <div class="newsletter-form">
+          <input 
+            type="email" 
+            placeholder="Tu email aquí" 
+            class="newsletter-input"
+          >
+          <button class="newsletter-button">Suscribirse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          <p>&copy; {{ currentYear }} Classic Cars. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-links-bottom">
+          <a href="#" class="footer-link">Términos y Condiciones</a>
+          <span class="separator">|</span>
+          <a href="#" class="footer-link">Política de Privacidad</a>
+          <span class="separator">|</span>
+          <a href="#" class="footer-link">Cookies</a>
+        </div>
+        <button class="scroll-to-top" (click)="scrollToTop()" title="Volver arriba">
+          ↑
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
