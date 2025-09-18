@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { Catalog } from './components/catalog/catalog';
-import { CarDetail } from './components/car-detail/car-detail';
-import { Contact } from './components/contact/contact';
-import { Services } from './components/services/services';
-import { About } from './components/about/about';
+import { CatalogComponent } from './components/catalog/catalog';
+import { CarDetailComponent } from './components/car-detail/car-detail';
+import { ContactComponent } from './components/contact/contact';
+import { ServicesComponent } from './components/services/services';
+import { AboutComponent } from './components/about/about';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'catalog', component: Catalog },
-  { path: 'car/:id', component: CarDetail },
-  { path: 'contact', component: Contact },
-  { path: 'services', component: Services },
-  { path: 'about', component: About },
-  { path: '', redirectTo: '' },
+  { path: 'catalog', component: CatalogComponent },
+  { path: 'car/:id', component: CarDetailComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '**', redirectTo: '' },
 ];

@@ -9,13 +9,13 @@ import { Car } from '../../models/car';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css'],
 })
 export class HomeComponent implements OnInit {
   featuredCars: Car[] = [];
   currentYear = new Date().getFullYear();
 
-  constructor(private carService: CarService, private router: Router) {}
+  constructor(private readonly carService: CarService, private readonly router: Router) {}
 
   ngOnInit(): void {
     const allCars = this.carService.getAllCars();
