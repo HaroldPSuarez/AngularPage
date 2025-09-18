@@ -1,1 +1,156 @@
-<p>contact works!</p>
+<div class="contact">
+  <div class="contact-header">
+    <div class="container">
+      <h1>Contactános</h1>
+      <p>¿Interesado en algún vehículo? Contáctanos para más información</p>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Información de contacto -->
+        <div class="contact-info">
+          <h2>Información de Contacto</h2>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-details">
+              <h4>Ubicación</h4>
+              <p>Bogotá, Colombia<br>Zona Rosa, Chapinero</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-details">
+              <h4>Teléfono</h4>
+              <p>+57 1 234 5678<br>+57 300 123 4567</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div class="info-details">
+              <h4>Email</h4>
+              <p>info@classiccars.com<br>ventas@classiccars.com</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">🕒</div>
+            <div class="info-details">
+              <h4>Horario de Atención</h4>
+              <p>Lunes - Viernes: 9:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon">📘 Facebook</a>
+              <a href="#" class="social-icon">📷 Instagram</a>
+              <a href="#" class="social-icon">🐦 Twitter</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de contacto -->
+        <div class="contact-form-section">
+          <!-- Mensaje de éxito -->
+          <div *ngIf="isSubmitted" class="success-message">
+            <div class="success-icon">✅</div>
+            <h3>¡Mensaje Enviado!</h3>
+            <p>Gracias por contactarnos. Te responderemos pronto.</p>
+            <button (click)="resetSubmission()" class="new-message-btn">
+              Enviar otro mensaje
+            </button>
+          </div>
+
+          <!-- Formulario -->
+          <form *ngIf="!isSubmitted" (ngSubmit)="onSubmit()" class="contact-form">
+            <h2>Envíanos un Mensaje</h2>
+            
+            <!-- Campo Nombre -->
+            <div class="form-group">
+              <label for="name">Nombre Completo *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                [(ngModel)]="contact.name"
+                [class.error]="errors['name']"
+                placeholder="Tu nombre completo"
+                required
+              />
+              <span *ngIf="errors['name']" class="error-message">
+                {{ errors['name'] }}
+              </span>
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-group">
+              <label for="email">Correo Electrónico *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="contact.email"
+                [class.error]="errors['email']"
+                placeholder="tu@email.com"
+                required
+              />
+              <span *ngIf="errors['email']" class="error-message">
+                {{ errors['email'] }}
+              </span>
+            </div>
+
+            <!-- Campo Teléfono -->
+            <div class="form-group">
+              <label for="phone">Teléfono *</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                [(ngModel)]="contact.phone"
+                [class.error]="errors['phone']"
+                placeholder="+57 300 123 4567"
+                required
+              />
+              <span *ngIf="errors['phone']" class="error-message">
+                {{ errors['phone'] }}
+              </span>
+            </div>
+
+            <!-- Campo Mensaje -->
+            <div class="form-group">
+              <label for="message">Mensaje *</label>
+              <textarea
+                id="message"
+                name="message"
+                [(ngModel)]="contact.message"
+                [class.error]="errors['message']"
+                placeholder="Cuéntanos en qué podemos ayudarte..."
+                rows="5"
+                required
+              ></textarea>
+              <span *ngIf="errors['message']" class="error-message">
+                {{ errors['message'] }}
+              </span>
+            </div>
+
+            <!-- Botón de envío -->
+            <button
+              type="submit"
+              [disabled]="isSubmitting"
+              class="submit-btn"
+              [class.loading]="isSubmitting"
+            >
+              <span *ngIf="!isSubmitting">Enviar Mensaje</span>
+              <span *ngIf="isSubmitting">Enviando...</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

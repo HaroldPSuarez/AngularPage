@@ -1,1 +1,104 @@
-<p>catalog works!</p>
+<div class="catalog">
+  <div class="catalog-header">
+    <div class="container">
+      <h1>Catálogo de Carros Clásicos</h1>
+      <p>Explora nuestra colección completa de supercarros legendarios</p>
+    </div>
+  </div>
+
+  <div class="filters-section">
+    <div class="container">
+      <div class="filters">
+        <div class="filter-group">
+          <label for="search">Buscar:</label>
+          <input 
+            type="text" 
+            id="search"
+            [(ngModel)]="searchTerm"
+            (input)="filterCars()"
+            placeholder="Nombre o marca..."
+            class="search-input"
+          />
+        </div>
+        
+        <div class="filter-group">
+          <label for="decade">Década:</label>
+          <select 
+            id="decade"
+            [(ngModel)]="selectedDecade"
+            (change)="filterCars()"
+            class="filter-select"
+          >
+            <option value="">Todas</option>
+            <option *ngFor="let decade of decades" [value]="decade">{{ decade }}</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="brand">Marca:</label>
+          <select 
+            id="brand"
+            [(ngModel)]="selectedBrand"
+            (change)="filterCars()"
+            class="filter-select"
+          >
+            <option value="">Todas</option>
+            <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+          </select>
+        </div>
+        
+        <button (click)="resetFilters()" class="reset-btn">Limpiar Filtros</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cars-section">
+    <div class="container">
+      <div class="cars-count">
+        <p>Mostrando {{ filteredCars.length }} de {{ cars.length }} vehículos</p>
+      </div>
+      
+      <div class="cars-grid">
+        <div *ngFor="let car of filteredCars" class="car-card">
+          <div class="car-image">
+            <img [src]="car.image" [alt]="car.name" />
+            <div class="car-overlay">
+              <div class="decade-badge">{{ car.decade }}</div>
+              <div class="view-details">Ver Detalles</div>
+            </div>
+          </div>
+          
+          <div class="car-info">
+            <div class="car-header">
+              <h3>{{ car.brand }}</h3>
+              <span class="car-year">{{ car.year }}</span>
+            </div>
+            <h4>{{ car.name }}</h4>
+            
+            <div class="car-specs">
+              <div class="spec">
+                <span class="spec-label">Motor:</span>
+                <span class="spec-value">{{ car.engine }}</span>
+              </div>
+              <div class="spec">
+                <span class="spec-label">Potencia:</span>
+                <span class="spec-value">{{ car.horsepower }} HP</span>
+              </div>
+              <div class="spec">
+                <span class="spec-label">V. Máx:</span>
+                <span class="spec-value">{{ car.topSpeed }}</span>
+              </div>
+            </div>
+            
+            <div class="car-price">{{ car.price }}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="filteredCars.length === 0" class="no-results">
+        <h3>No se encontraron vehículos</h3>
+        <p>Intenta ajustar los filtros de búsqueda</p>
+      </div>
+    </div>
+  </div>
+</div>

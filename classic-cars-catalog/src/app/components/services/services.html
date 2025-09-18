@@ -1,1 +1,98 @@
-<p>services works!</p>
+<div class="services">
+  <div class="services-header">
+    <div class="container">
+      <h1>Nuestros Servicios</h1>
+      <p>Servicios especializados para entusiastas de vehículos clásicos deportivos</p>
+    </div>
+  </div>
+
+  <div class="services-intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <h2>Más de 20 años de experiencia</h2>
+          <p>
+            Somos especialistas en vehículos clásicos deportivos con un equipo de 
+            profesionales apasionados por los automóviles de época. Ofrecemos 
+            servicios integrales desde la compra hasta el mantenimiento.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <h3>500+</h3>
+              <p>Vehículos restaurados</p>
+            </div>
+            <div class="stat">
+              <h3>20+</h3>
+              <p>Años de experiencia</p>
+            </div>
+            <div class="stat">
+              <h3>98%</h3>
+              <p>Clientes satisfechos</p>
+            </div>
+          </div>
+        </div>
+        <div class="intro-image">
+          <div class="image-placeholder">
+            🏆 Taller Especializado
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services-grid-section">
+    <div class="container">
+      <h2 class="section-title">Servicios Profesionales</h2>
+      <div class="services-grid">
+        <div *ngFor="let service of services" class="service-card">
+          <div class="service-header">
+            <div class="service-icon">{{ service.icon }}</div>
+            <h3>{{ service.title }}</h3>
+          </div>
+          
+          <p class="service-description">{{ service.description }}</p>
+          
+          <div class="service-features">
+            <h4>Incluye:</h4>
+            <ul>
+              <li *ngFor="let feature of service.features">{{ feature }}</li>
+            </ul>
+          </div>
+          
+          <div class="service-footer">
+            <div class="service-price">{{ service.price }}</div>
+            <button class="service-btn">Solicitar Cotización</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-choose-us">
+    <div class="container">
+      <h2>¿Por qué elegirnos?</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">⭐</div>
+          <h3>Experiencia Comprobada</h3>
+          <p>Más de dos décadas trabajando exclusivamente con vehículos clásicos deportivos</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <h3>Confianza y Seguridad</h3>
+          <p>Todas las transacciones están respaldadas por seguros y garantías</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Especialización</h3>
+          <p>Nos enfocamos únicamente en supercarros de los 80s, 90s y 2000s</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌟</div>
+          <h3>Red Internacional</h3>
+          <p>Contactos globales para encontrar cualquier pieza o vehículo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

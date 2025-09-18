@@ -1,1 +1,130 @@
-<p>about works!</p>
+<div class="about">
+  <div class="about-header">
+    <div class="container">
+      <h1>Sobre Nosotros</h1>
+      <p>Pasión por los vehículos clásicos deportivos desde 2003</p>
+    </div>
+  </div>
+
+  <div class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-text">
+          <h2>Nuestra Historia</h2>
+          <p>
+            Fundada en 2003 por Carlos Rodríguez, un apasionado de los supercars clásicos, 
+            nuestra empresa nació del amor por los vehículos que marcaron las décadas 
+            doradas del automovilismo deportivo.
+          </p>
+          <p>
+            Lo que comenzó como un pequeño taller especializado en Ferrari, se ha convertido 
+            en la referencia en Colombia para entusiastas de vehículos clásicos deportivos 
+            de los 80s, 90s y principios de los 2000s.
+          </p>
+          <p>
+            Hoy, con más de 20 años de experiencia, hemos restaurado más de 500 vehículos 
+            y ayudado a cientos de coleccionistas a encontrar su supercar soñado.
+          </p>
+        </div>
+        <div class="story-image">
+          <div class="image-placeholder">
+            🏢 Nuestro Taller Principal
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="values-section">
+    <div class="container">
+      <h2>Nuestros Valores</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h3>Pasión</h3>
+          <p>Cada vehículo que pasa por nuestras manos recibe el cuidado y la atención que merece una obra de arte.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">✨</div>
+          <h3>Excelencia</h3>
+          <p>Nos comprometemos con los más altos estándares de calidad en cada restauración y servicio.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Confianza</h3>
+          <p>Construimos relaciones duraderas basadas en transparencia, honestidad y resultados excepcionales.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔬</div>
+          <h3>Expertise</h3>
+          <p>Conocimiento especializado en las marcas y modelos más exclusivos del mundo automotor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <div class="container">
+      <h2>Nuestro Equipo</h2>
+      <p class="team-intro">
+        Un equipo de profesionales apasionados con décadas de experiencia combinada
+      </p>
+      <div class="team-grid">
+        <div *ngFor="let member of teamMembers" class="team-card">
+          <div class="member-icon">{{ member.icon }}</div>
+          <h3>{{ member.name }}</h3>
+          <h4>{{ member.position }}</h4>
+          <p>{{ member.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-section">
+    <div class="container">
+      <h2>Nuestra Trayectoria</h2>
+      <div class="timeline">
+        <div *ngFor="let milestone of milestones; let i = index" class="timeline-item" [class.even]="i % 2 === 1">
+          <div class="timeline-year">{{ milestone.year }}</div>
+          <div class="timeline-content">
+            <p>{{ milestone.event }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="achievements-section">
+    <div class="container">
+      <h2>Logros y Reconocimientos</h2>
+      <div class="achievements-grid">
+        <div class="achievement">
+          <div class="achievement-number">500+</div>
+          <p>Vehículos Restaurados</p>
+        </div>
+        <div class="achievement">
+          <div class="achievement-number">20+</div>
+          <p>Años de Experiencia</p>
+        </div>
+        <div class="achievement">
+          <div class="achievement-number">15</div>
+          <p>Marcas Especializadas</p>
+        </div>
+        <div class="achievement">
+          <div class="achievement-number">98%</div>
+          <p>Satisfacción del Cliente</p>
+        </div>
+      </div>
+      
+      <div class="certifications">
+        <h3>Certificaciones</h3>
+        <div class="cert-list">
+          <div class="cert-item">🏆 Certificación Internacional en Restauración Automotriz</div>
+          <div class="cert-item">🏆 Especialización en Vehículos Ferrari (Maranello)</div>
+          <div class="cert-item">🏆 Certificación en Tasación de Vehículos Clásicos</div>
+          <div class="cert-item">🏆 Miembro de Classic Car Club International</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
