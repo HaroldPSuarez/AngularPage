@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <div class="logo" (click)="navigateTo('')">
-      <h1>🏎 Classic Cars</h1>
+      <h1>🏎️ Classic Cars</h1>
     </div>
 
     <nav class="nav" [class.nav-open]="isMenuOpen">
@@ -9,6 +9,7 @@
         >Inicio</a
       >
       <a routerLink="/catalog" routerLinkActive="active">Catálogo</a>
+      <a routerLink="/compare" routerLinkActive="active">Comparador</a>
       <a routerLink="/services" routerLinkActive="active">Servicios</a>
       <a routerLink="/about" routerLinkActive="active">Nosotros</a>
       <a routerLink="/contact" routerLinkActive="active">Contacto</a>

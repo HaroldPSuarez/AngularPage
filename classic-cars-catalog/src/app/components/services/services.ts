@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface Service {
   id: number;
@@ -72,4 +73,14 @@ export class ServicesComponent {
       price: 'Desde $150.000 COP'
     }
   ];
+
+  // Inyectar Router para navegación
+  constructor(private router: Router) {}
+
+  // Método para navegar a la página de cotización
+  requestQuote(serviceName: string): void {
+    this.router.navigate(['/quote'], {
+      queryParams: { service: serviceName }
+    });
+  }
 }

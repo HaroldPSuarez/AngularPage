@@ -1,0 +1,180 @@
+<div class="quote-page">
+  <div class="quote-header">
+    <div class="container">
+      <h1>Solicitar Cotización</h1>
+      <p>Completa el formulario y nos pondremos en contacto contigo</p>
+    </div>
+  </div>
+
+  <div class="quote-content">
+    <div class="container">
+      <!-- Formulario -->
+      <mat-card *ngIf="!showSuccess" class="quote-card">
+        <mat-card-content>
+          <form class="quote-form">
+            <!-- Servicio -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Servicio de Interés *</mat-label>
+              <mat-select [(ngModel)]="quoteData.service" name="service" required>
+                <mat-option *ngFor="let service of services" [value]="service">
+                  {{ service }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Nombre -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre Completo *</mat-label>
+              <input 
+                matInput 
+                [(ngModel)]="quoteData.name" 
+                name="name"
+                placeholder="Tu nombre completo"
+                required
+              />
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Correo Electrónico *</mat-label>
+              <input 
+                matInput 
+                type="email"
+                [(ngModel)]="quoteData.email" 
+                name="email"
+                placeholder="tu@email.com"
+                required
+              />
+            </mat-form-field>
+
+            <!-- Teléfono -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Teléfono *</mat-label>
+              <input 
+                matInput 
+                type="tel"
+                [(ngModel)]="quoteData.phone" 
+                name="phone"
+                placeholder="+57 300 123 4567"
+                required
+              />
+            </mat-form-field>
+
+            <!-- Modelo de Carro (Opcional) -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Modelo de Vehículo (Opcional)</mat-label>
+              <input 
+                matInput 
+                [(ngModel)]="quoteData.carModel" 
+                name="carModel"
+                placeholder="Ej: Ferrari F40 1987"
+              />
+            </mat-form-field>
+
+            <!-- Mensaje -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Mensaje *</mat-label>
+              <textarea 
+                matInput 
+                [(ngModel)]="quoteData.message" 
+                name="message"
+                rows="5"
+                placeholder="Cuéntanos sobre tu proyecto o necesidad..."
+                required
+              ></textarea>
+            </mat-form-field>
+
+            <!-- Botones -->
+            <div class="form-actions">
+              <button 
+                mat-stroked-button 
+                type="button"
+                (click)="backToServices()"
+                class="back-btn"
+              >
+                Volver
+              </button>
+              <button 
+                mat-raised-button 
+                color="primary"
+                type="button"
+                (click)="submitQuote()"
+                [disabled]="isSubmitting"
+                class="submit-btn"
+              >
+                <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+                <span *ngIf="!isSubmitting">Enviar Cotización</span>
+                <span *ngIf="isSubmitting">Enviando...</span>
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Mensaje de Éxito -->
+      <mat-card *ngIf="showSuccess" class="success-card">
+        <mat-card-content>
+          <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2>¡Cotización Enviada!</h2>
+            <p>Gracias por contactarnos. Hemos recibido tu solicitud de cotización.</p>
+            
+            <div class="quote-summary">
+              <h3>Resumen de tu solicitud:</h3>
+              <div class="summary-item">
+                <strong>Servicio:</strong> {{ quoteData.service }}
+              </div>
+              <div class="summary-item">
+                <strong>Nombre:</strong> {{ quoteData.name }}
+              </div>
+              <div class="summary-item">
+                <strong>Email:</strong> {{ quoteData.email }}
+              </div>
+              <div class="summary-item" *ngIf="quoteData.carModel">
+                <strong>Vehículo:</strong> {{ quoteData.carModel }}
+              </div>
+            </div>
+
+            <p class="next-steps">
+              Nuestro equipo revisará tu solicitud y se pondrá en contacto contigo 
+              en un plazo máximo de 24 horas.
+            </p>
+
+            <div class="success-actions">
+              <button mat-raised-button color="primary" (click)="newQuote()">
+                Nueva Cotización
+              </button>
+              <button mat-stroked-button (click)="backToServices()">
+                Volver a Servicios
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Info Lateral -->
+      <div class="quote-info">
+        <mat-card class="info-card">
+          <mat-card-content>
+            <h3>¿Por qué solicitar una cotización?</h3>
+            <ul>
+              <li>✓ Precios personalizados para tu proyecto</li>
+              <li>✓ Asesoría profesional gratuita</li>
+              <li>✓ Respuesta en menos de 24 horas</li>
+              <li>✓ Sin compromisos</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <mat-card-content>
+            <h3>Información de Contacto</h3>
+            <p><strong>📞 Teléfono:</strong><br>+57 1 234 5678</p>
+            <p><strong>📧 Email:</strong><br>info@classiccars.com</p>
+            <p><strong>📍 Ubicación:</strong><br>Bogotá, Colombia</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

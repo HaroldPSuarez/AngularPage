@@ -61,7 +61,9 @@
           
           <div class="service-footer">
             <div class="service-price">{{ service.price }}</div>
-            <button class="service-btn">Solicitar Cotización</button>
+            <button (click)="requestQuote(service.title)" class="service-btn">
+              Solicitar Cotización
+            </button>
           </div>
         </div>
       </div>

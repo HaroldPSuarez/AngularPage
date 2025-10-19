@@ -1,0 +1,26 @@
+<div class="newsletter">
+  <div class="container">
+    <div class="newsletter-content">
+      <div class="newsletter-text">
+        <h2>Mantente Informado</h2>
+        <p>Suscríbete para recibir noticias sobre nuevos vehículos y eventos exclusivos</p>
+      </div>
+      <div class="newsletter-form">
+        <input 
+          type="email" 
+          [(ngModel)]="email"
+          placeholder="Tu email aquí"
+          (keyup.enter)="subscribe()"
+          class="newsletter-input"
+        />
+        <button 
+          (click)="subscribe()" 
+          [disabled]="isSubmitting"
+          class="newsletter-btn"
+        >
+          {{ isSubmitting ? 'Enviando...' : 'Suscribirse' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

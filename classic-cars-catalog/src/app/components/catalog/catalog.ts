@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CurrencyFormatPipe } from '../../pipes/currency-format-pipe';
+import { HighlightPipe } from '../../pipes/highlight-pipe';
 
 interface Car {
   id: number;
@@ -18,7 +20,7 @@ interface Car {
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CurrencyFormatPipe, HighlightPipe],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css'
 })

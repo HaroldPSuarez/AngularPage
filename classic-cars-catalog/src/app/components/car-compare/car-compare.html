@@ -1,0 +1,127 @@
+<div class="compare-page">
+  <div class="compare-header">
+    <div class="container">
+      <h1>Comparador de Vehículos</h1>
+      <p>Compara hasta 3 vehículos clásicos lado a lado</p>
+    </div>
+  </div>
+
+  <div class="compare-content">
+    <div class="container">
+      <!-- Selectores -->
+      <div class="car-selectors">
+        <div class="selector-card">
+          <h3>Vehículo 1</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccionar vehículo</mat-label>
+            <mat-select [(ngModel)]="selectedCarId1">
+              <mat-option [value]="null">-- Ninguno --</mat-option>
+              <mat-option *ngFor="let car of availableCars" [value]="car.id">
+                {{ car.brand }} {{ car.name }} ({{ car.year }})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="selector-card">
+          <h3>Vehículo 2</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccionar vehículo</mat-label>
+            <mat-select [(ngModel)]="selectedCarId2">
+              <mat-option [value]="null">-- Ninguno --</mat-option>
+              <mat-option *ngFor="let car of availableCars" [value]="car.id">
+                {{ car.brand }} {{ car.name }} ({{ car.year }})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="selector-card">
+          <h3>Vehículo 3 (Opcional)</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccionar vehículo</mat-label>
+            <mat-select [(ngModel)]="selectedCarId3">
+              <mat-option [value]="null">-- Ninguno --</mat-option>
+              <mat-option *ngFor="let car of availableCars" [value]="car.id">
+                {{ car.brand }} {{ car.name }} ({{ car.year }})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Tabla de Comparación -->
+      <div class="comparison-table" *ngIf="selectedCars.length > 0">
+        <table mat-table [dataSource]="selectedCars" class="custom-table">
+          <!-- Columna de Imagen -->
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef>Vehículo</th>
+            <td mat-cell *matCellDef="let car">
+              <div class="car-image-cell">
+                <img [src]="car.image" [alt]="car.name" />
+                <div class="car-name">
+                  <strong>{{ car.brand }}</strong>
+                  <span>{{ car.name }}</span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Columna de Año -->
+          <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef>Año</th>
+            <td mat-cell *matCellDef="let car" [class.winner]="isWinner(car, 'year')">
+              {{ car.year }}
+              <span class="trophy" *ngIf="isWinner(car, 'year')">🏆</span>
+            </td>
+          </ng-container>
+
+          <!-- Columna de Motor -->
+          <ng-container matColumnDef="engine">
+            <th mat-header-cell *matHeaderCellDef>Motor</th>
+            <td mat-cell *matCellDef="let car">{{ car.engine }}</td>
+          </ng-container>
+
+          <!-- Columna de Potencia -->
+          <ng-container matColumnDef="horsepower">
+            <th mat-header-cell *matHeaderCellDef>Potencia</th>
+            <td mat-cell *matCellDef="let car" [class.winner]="isWinner(car, 'horsepower')">
+              {{ car.horsepower }} HP
+              <span class="trophy" *ngIf="isWinner(car, 'horsepower')">🏆</span>
+            </td>
+          </ng-container>
+
+          <!-- Columna de Velocidad Máxima -->
+          <ng-container matColumnDef="topSpeed">
+            <th mat-header-cell *matHeaderCellDef>V. Máxima</th>
+            <td mat-cell *matCellDef="let car">{{ car.topSpeed }}</td>
+          </ng-container>
+
+          <!-- Columna de Aceleración -->
+          <ng-container matColumnDef="acceleration">
+            <th mat-header-cell *matHeaderCellDef>Aceleración</th>
+            <td mat-cell *matCellDef="let car">{{ car.acceleration }}</td>
+          </ng-container>
+
+          <!-- Columna de Precio -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let car">{{ car.price }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+      <!-- Mensaje cuando no hay carros seleccionados -->
+      <div class="no-comparison" *ngIf="selectedCars.length === 0">
+        <div class="empty-state">
+          <div style="font-size: 4rem; margin-bottom: 1rem;">🏎️</div>
+          <h3>No hay vehículos para comparar</h3>
+          <p>Selecciona al menos un vehículo arriba para comenzar la comparación</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

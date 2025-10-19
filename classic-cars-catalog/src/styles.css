@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #0c0c0c;
+  color: #ffffff;
+}
+
+/* Snackbar Styles */
+.success-snackbar {
+  background: #4CAF50 !important;
+  color: white !important;
+}
+
+.error-snackbar {
+  background: #f44336 !important;
+  color: white !important;
+}
+
+/* Material Theme Overrides */
+.mat-mdc-card {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.mat-mdc-button.mat-primary {
+  background: linear-gradient(45deg, #ff4500, #ffa500) !important;
+  color: white !important;
+}
+
+.mat-mdc-outlined-button {
+  border-color: #444 !important;
+  color: #cccccc !important;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4500;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffa500;
+}

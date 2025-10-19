@@ -70,10 +70,10 @@
           
           <div class="car-info">
             <div class="car-header">
-              <h3>{{ car.brand }}</h3>
+              <h3 [innerHTML]="car.brand | highlight:searchTerm"></h3>
               <span class="car-year">{{ car.year }}</span>
             </div>
-            <h4>{{ car.name }}</h4>
+            <h4 [innerHTML]="car.name | highlight:searchTerm"></h4>
             
             <div class="car-specs">
               <div class="spec">
@@ -90,7 +90,7 @@
               </div>
             </div>
             
-            <div class="car-price">{{ car.price }}</div>
+            <div class="car-price">{{ car.price | currencyFormat }}</div>
           </div>
         </div>
       </div>
