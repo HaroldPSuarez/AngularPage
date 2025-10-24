@@ -18,7 +18,7 @@ export class CarService {
       acceleration: '0-100 en 4.9s',
       price: '$150,000 - $300,000',
       description: 'Icono de los 80s con diseño futurista y puertas de tijera.',
-      image: 'public/proxy-image.jpg',
+      image: '/img/countach.jpg',
       features: ['Puertas de tijera', 'Motor V12', 'Diseño angular', 'Tracción trasera'],
     },
     {
@@ -33,7 +33,7 @@ export class CarService {
       acceleration: '0-100 en 4.1s',
       price: '$1,200,000 - $2,500,000',
       description: 'El último Ferrari aprobado por Enzo Ferrari, pura perfección.',
-      image: 'public/proxy-image (1).jpg',
+      image: '/img/f40.jpg',
       features: ['Fibra de carbono', 'Twin-Turbo', 'Aerodinámica activa', 'Peso reducido'],
     },
     {
@@ -48,7 +48,7 @@ export class CarService {
       acceleration: '0-100 en 4.6s',
       price: '$80,000 - $150,000',
       description: 'El 911 Turbo definitivo con el icónico whale tail.',
-      image: 'public/proxy-image (2).jpg',
+      image: '/img/911.jpg',
       features: ['Motor boxer', 'Turbocompresor', 'Tracción trasera', 'Whale tail'],
     },
   ];
