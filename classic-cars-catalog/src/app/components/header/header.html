@@ -5,14 +5,49 @@
     </div>
 
     <nav class="nav" [class.nav-open]="isMenuOpen">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        >Inicio</a
-      >
-      <a routerLink="/catalog" routerLinkActive="active">Catálogo</a>
-      <a routerLink="/compare" routerLinkActive="active">Comparador</a>
-      <a routerLink="/services" routerLinkActive="active">Servicios</a>
-      <a routerLink="/about" routerLinkActive="active">Nosotros</a>
-      <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Inicio
+      </a>
+      <a routerLink="/catalog" routerLinkActive="active">
+        Catálogo
+      </a>
+      <a routerLink="/compare" routerLinkActive="active">
+        Comparador
+      </a>
+      <a routerLink="/services" routerLinkActive="active">
+        Servicios
+      </a>
+      <a routerLink="/about" routerLinkActive="active">
+        Nosotros
+      </a>
+      <a routerLink="/contact" routerLinkActive="active">
+        Contacto
+      </a>
+      
+      <!-- Separador visual -->
+      <div class="nav-separator"></div>
+      
+      <!-- Opciones de usuario -->
+      <ng-container *ngIf="isLoggedIn(); else notLoggedIn">
+        <a routerLink="/favorites" routerLinkActive="active" class="user-link">
+          <span class="icon">❤️</span> Favoritos
+        </a>
+        <a routerLink="/admin" routerLinkActive="active" class="user-link">
+          <span class="icon">📊</span> Dashboard
+        </a>
+        <div class="user-info">
+          <span class="user-name">👤 {{ getUserName() }}</span>
+        </div>
+        <a (click)="logout()" class="logout-link">
+          <span class="icon">🚪</span> Salir
+        </a>
+      </ng-container>
+      
+      <ng-template #notLoggedIn>
+        <a routerLink="/auth" routerLinkActive="active" class="login-link">
+          <span class="icon">🔐</span> Login
+        </a>
+      </ng-template>
     </nav>
 
     <div class="menu-toggle" (click)="toggleMenu()">

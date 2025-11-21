@@ -14,7 +14,7 @@
   align-items: center;
   padding: 0 2rem;
   height: 80px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -34,23 +34,32 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .nav a {
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 25px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.nav a .icon {
+  font-size: 1.1rem;
 }
 
 .nav a::before {
@@ -76,6 +85,60 @@
   box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
 }
 
+/* Separador visual */
+.nav-separator {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, #ff4500, transparent);
+  margin: 0 0.5rem;
+}
+
+/* Estilos para links de usuario */
+.user-link {
+  border: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.user-link:hover {
+  border-color: #ff4500;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 69, 0, 0.1);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.user-name {
+  color: #ffa500;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.logout-link {
+  cursor: pointer;
+  background: rgba(211, 47, 47, 0.1) !important;
+  border: 1px solid rgba(211, 47, 47, 0.3);
+}
+
+.logout-link:hover {
+  background: linear-gradient(45deg, #d32f2f, #f44336) !important;
+  border-color: #d32f2f;
+}
+
+.login-link {
+  background: linear-gradient(45deg, #4CAF50, #66BB6A) !important;
+  border: none;
+  font-weight: 600;
+}
+
+.login-link:hover {
+  background: linear-gradient(45deg, #388E3C, #4CAF50) !important;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -91,7 +154,18 @@
   transition: 0.3s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .nav {
+    gap: 1rem;
+  }
+  
+  .nav a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 968px) {
   .nav {
     display: none;
     position: absolute;
@@ -102,6 +176,7 @@
     flex-direction: column;
     padding: 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    gap: 0;
   }
 
   .nav-open {
@@ -113,7 +188,22 @@
   }
 
   .nav a {
+    width: 100%;
     padding: 1rem;
+    border-bottom: 1px solid #333;
+    border-radius: 0;
+  }
+
+  .nav-separator {
+    width: 100%;
+    height: 2px;
+    margin: 0.5rem 0;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: center;
+    border-radius: 0;
     border-bottom: 1px solid #333;
   }
 }

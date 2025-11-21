@@ -1,0 +1,61 @@
+<div class="auth-page">
+  <div class="auth-container">
+    <mat-card class="auth-card">
+      <mat-tab-group>
+        <!-- Tab de Login -->
+        <mat-tab label="Iniciar Sesión">
+          <form class="auth-form" (ngSubmit)="login()">
+            <h2>Bienvenido de nuevo</h2>
+            <p>Inicia sesión para guardar tus favoritos</p>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" [(ngModel)]="loginData.email" name="email" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="password" [(ngModel)]="loginData.password" name="password" required>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="isLoading" class="full-width">
+              {{ isLoading ? 'Iniciando...' : 'Iniciar Sesión' }}
+            </button>
+          </form>
+        </mat-tab>
+
+        <!-- Tab de Registro -->
+        <mat-tab label="Registrarse">
+          <form class="auth-form" (ngSubmit)="register()">
+            <h2>Crear cuenta</h2>
+            <p>Regístrate para guardar tus carros favoritos</p>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre</mat-label>
+              <input matInput [(ngModel)]="registerData.name" name="name" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" [(ngModel)]="registerData.email" name="email" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="password" [(ngModel)]="registerData.password" name="password" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Confirmar Contraseña</mat-label>
+              <input matInput type="password" [(ngModel)]="registerData.confirmPassword" name="confirmPassword" required>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="isLoading" class="full-width">
+              {{ isLoading ? 'Registrando...' : 'Crear Cuenta' }}
+            </button>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

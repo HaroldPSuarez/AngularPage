@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ApiService } from '../../../services/api';
 
 interface QuoteData {
   service: string;
@@ -29,7 +31,8 @@ interface QuoteData {
     MatButtonModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule
   ],
   templateUrl: './quote.html',
   styleUrl: './quote.css'
@@ -59,7 +62,8 @@ export class QuoteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -81,16 +85,27 @@ export class QuoteComponent implements OnInit {
 
     this.isSubmitting = true;
 
-    setTimeout(() => {
-      console.log('Cotización enviada:', this.quoteData);
-      this.isSubmitting = false;
-      this.showSuccess = true;
-      
-      this.snackBar.open('¡Cotización enviada exitosamente! 🎉', 'Cerrar', {
-        duration: 5000,
-        panelClass: ['success-snackbar']
-      });
-    }, 2000);
+    // Enviar al backend
+    this.apiService.sendQuote(this.quoteData).subscribe({
+      next: (response) => {
+        console.log('Cotización enviada exitosamente:', response);
+        this.isSubmitting = false;
+        this.showSuccess = true;
+        
+        this.snackBar.open('¡Cotización enviada exitosamente! 🎉', 'Cerrar', {
+          duration: 5000,
+          panelClass: ['success-snackbar']
+        });
+      },
+      error: (error) => {
+        console.error('Error al enviar cotización:', error);
+        this.snackBar.open('Error al enviar cotización. Por favor intenta de nuevo.', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        });
+        this.isSubmitting = false;
+      }
+    });
   }
 
   validateForm(): boolean {

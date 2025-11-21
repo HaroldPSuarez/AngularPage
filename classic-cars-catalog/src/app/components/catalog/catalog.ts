@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CurrencyFormatPipe } from '../../pipes/currency-format-pipe';
 import { HighlightPipe } from '../../pipes/highlight-pipe';
+import { AuthService } from '../../../services/auth';
+import { ApiService } from '../../../services/api';
 
 interface Car {
   id: number;
@@ -20,7 +26,15 @@ interface Car {
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, FormsModule, CurrencyFormatPipe, HighlightPipe],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    CurrencyFormatPipe, 
+    HighlightPipe,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule
+  ],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css'
 })
@@ -65,10 +79,38 @@ export class CatalogComponent implements OnInit {
   
   decades = ['80s', '90s', '2000s'];
   brands: string[] = [];
+  
+  favoriteStatus: { [key: number]: boolean } = {};
+
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.filteredCars = [...this.cars];
     this.brands = [...new Set(this.cars.map(car => car.brand))].sort();
+    
+    // Cargar estado de favoritos si está logueado
+    if (this.authService.isLoggedIn()) {
+      this.loadFavoriteStatus();
+    }
+  }
+
+  loadFavoriteStatus(): void {
+    this.apiService.getFavorites().subscribe({
+      next: (response) => {
+        // Marcar los favoritos del usuario
+        response.data.forEach((fav: any) => {
+          this.favoriteStatus[fav.id] = true;
+        });
+      },
+      error: (error) => {
+        console.error('Error al cargar favoritos:', error);
+      }
+    });
   }
 
   filterCars(): void {
@@ -88,5 +130,67 @@ export class CatalogComponent implements OnInit {
     this.selectedBrand = '';
     this.searchTerm = '';
     this.filteredCars = [...this.cars];
+  }
+
+  toggleFavorite(carId: number, event: Event): void {
+    event.stopPropagation();
+    
+    if (!this.authService.isLoggedIn()) {
+      this.snackBar.open('Debes iniciar sesión para guardar favoritos', 'Login', {
+        duration: 3000,
+        panelClass: ['error-snackbar']
+      }).onAction().subscribe(() => {
+        this.router.navigate(['/auth']);
+      });
+      return;
+    }
+
+    if (this.favoriteStatus[carId]) {
+      // Eliminar de favoritos
+      this.apiService.removeFavorite(carId).subscribe({
+        next: () => {
+          this.favoriteStatus[carId] = false;
+          this.snackBar.open('Eliminado de favoritos', 'Cerrar', {
+            duration: 2000,
+            panelClass: ['success-snackbar']
+          });
+        },
+        error: (error) => {
+          console.error('Error al eliminar favorito:', error);
+          this.snackBar.open('Error al eliminar favorito', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
+        }
+      });
+    } else {
+      // Agregar a favoritos
+      this.apiService.addFavorite(carId).subscribe({
+        next: () => {
+          this.favoriteStatus[carId] = true;
+          this.snackBar.open('¡Agregado a favoritos! ❤️', 'Ver', {
+            duration: 2000,
+            panelClass: ['success-snackbar']
+          }).onAction().subscribe(() => {
+            this.router.navigate(['/favorites']);
+          });
+        },
+        error: (error) => {
+          console.error('Error al agregar favorito:', error);
+          this.snackBar.open('Error al agregar favorito', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
+        }
+      });
+    }
+  }
+
+  isFavorite(carId: number): boolean {
+    return this.favoriteStatus[carId] || false;
+  }
+
+  viewCarDetail(carId: number): void {
+    this.router.navigate(['/car', carId]);
   }
 }

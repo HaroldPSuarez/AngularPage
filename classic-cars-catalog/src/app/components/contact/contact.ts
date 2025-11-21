@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../../services/api';
 
 interface Contact {
   name: string;
@@ -30,7 +32,20 @@ export class ContactComponent implements OnInit {
   isSubmitted = false;
   errors: { [key: string]: string } = {};
 
-  ngOnInit(): void {}
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) {}
+
+  ngOnInit(): void {
+    // Verificar si hay un carro específico en los query params
+    this.route.queryParams.subscribe(params => {
+      if (params['car']) {
+        this.contact.interestedCar = params['car'];
+        this.contact.message = `Estoy interesado en obtener más información sobre el ${params['car']}.`;
+      }
+    });
+  }
 
   validateForm(): boolean {
     this.errors = {};
@@ -68,12 +83,20 @@ export class ContactComponent implements OnInit {
 
     this.isSubmitting = true;
 
-    setTimeout(() => {
-      console.log('Contacto enviado:', this.contact);
-      this.isSubmitted = true;
-      this.resetForm();
-      this.isSubmitting = false;
-    }, 1000);
+    // Enviar al backend
+    this.apiService.sendContact(this.contact).subscribe({
+      next: (response) => {
+        console.log('Contacto enviado exitosamente:', response);
+        this.isSubmitted = true;
+        this.resetForm();
+        this.isSubmitting = false;
+      },
+      error: (error) => {
+        console.error('Error al enviar contacto:', error);
+        alert('Error al enviar el contacto. Por favor intenta de nuevo.');
+        this.isSubmitting = false;
+      }
+    });
   }
 
   resetForm(): void {

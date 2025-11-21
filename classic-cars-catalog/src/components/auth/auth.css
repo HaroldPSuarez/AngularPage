@@ -1,0 +1,58 @@
+.auth-page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.auth-card {
+  background: #1a1a1a !important;
+  padding: 2rem;
+}
+
+.auth-form {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form h2 {
+  color: #ff4500;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.auth-form p {
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-tab-labels {
+  justify-content: center;
+}
+
+::ng-deep .mat-mdc-tab-label {
+  color: #cccccc !important;
+}
+
+::ng-deep .mat-mdc-tab-label.mdc-tab--active {
+  color: #ff4500 !important;
+}
+
+::ng-deep .mat-mdc-tab-header {
+  border-bottom: 1px solid #333;
+}
