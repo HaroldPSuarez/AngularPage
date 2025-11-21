@@ -7,7 +7,6 @@ import { ContactComponent } from './components/contact/contact';
 import { QuoteComponent } from './components/quote/quote';
 import { CarCompareComponent } from './components/car-compare/car-compare';
 import { AuthComponent } from '../components/auth/auth';
-import { FavoritesComponent } from '../components/favorites/favorites';
 import { AdminDashboardComponent } from '../components/admin-dashboard/admin-dashboard';
 
 
@@ -51,11 +50,6 @@ export const routes: Routes = [
     path: 'auth', 
     component: AuthComponent,
     title: 'Login - Classic Cars'
-  },
-  { 
-    path: 'favorites', 
-    component: FavoritesComponent,
-    title: 'Mis Favoritos - Classic Cars'
   },
   { 
     path: 'admin', 

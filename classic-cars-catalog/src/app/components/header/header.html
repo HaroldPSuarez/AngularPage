@@ -29,23 +29,20 @@
       
       <!-- Opciones de usuario -->
       <ng-container *ngIf="isLoggedIn(); else notLoggedIn">
-        <a routerLink="/favorites" routerLinkActive="active" class="user-link">
-          <span class="icon">❤️</span> Favoritos
-        </a>
         <a routerLink="/admin" routerLinkActive="active" class="user-link">
-          <span class="icon">📊</span> Dashboard
+          <span class="icon"></span> Dashboard
         </a>
         <div class="user-info">
-          <span class="user-name">👤 {{ getUserName() }}</span>
+          <span class="user-name"> {{ getUserName() }}</span>
         </div>
         <a (click)="logout()" class="logout-link">
-          <span class="icon">🚪</span> Salir
+          <span class="icon"></span> Salir
         </a>
       </ng-container>
       
       <ng-template #notLoggedIn>
         <a routerLink="/auth" routerLinkActive="active" class="login-link">
-          <span class="icon">🔐</span> Login
+          <span class="icon"></span> Login
         </a>
       </ng-template>
     </nav>
@@ -57,3 +54,4 @@
     </div>
   </div>
 </header>
+
